@@ -1,0 +1,497 @@
+// Bicycle theme for Shower HTML presentation engine: github.com/shower/shower
+// Copyright © 2010–2013 Vadim Makeev, pepelsbey.net
+// Licensed under MIT license: github.com/shower/shower/wiki/MIT-License
+
+@import 'defaults';
+@import 'reset';
+
+body {
+	counter-reset:slide;
+	font:18pt/2 Tahoma, sans-serif;
+	}
+a {
+	text-decoration:none;
+	}
+
+// Caption
+// -------------------------------
+.caption {
+	display:none;
+	margin:0 0 50px;
+	color:lighten($blue, 10%);
+	text-shadow:0 1px 1px #1F3F60;
+	h1 {
+		font:bold 38pt/1 Tahoma, sans-serif;
+		text-shadow: #abf 2px 2px 2px;
+		}
+	a {
+		color:lighten($blue, 5%);
+		text-decoration:none;
+		&:hover {
+			color:lighten($blue, 15%);
+			}
+		}
+	}
+a.copyright {
+	position: absolute;
+	font-size: 15px;
+	color: lighten($blue, 40%);
+	right: 0;
+	top: 200px;
+	background: $blue;
+	padding: 0 10px;
+	box-shadow:0 0 20px rgba(#000, 0.4);
+	@include transform-origin(50% 100%);
+	@include transform(rotate(90deg) translateY(-79px));
+	&:hover {
+		background: lighten($blue, 5%);
+		color: lighten($blue, 45%);
+		}
+	}
+.clear {
+	clear:both;
+	}
+
+// Slide
+// -------------------------------
+.slide {
+	position:relative;
+	width:$width;
+	height:$height;
+	background:#FFF;
+	color:#000;
+	-webkit-print-color-adjust:exact;
+	-webkit-text-size-adjust:none;
+	-moz-text-size-adjust:none;
+	-ms-text-size-adjust:none;
+	// Number
+	&:after {
+		position:absolute;
+		bottom:25px;
+		right:25px;
+		padding:5px 0 0;
+		width:50px;
+		height:45px;
+		background:$blue;
+		border-radius: 50px;
+		color:#FFF;
+		counter-increment:slide;
+		content:counter(slide);
+		text-align:center;
+		font-size:20px;
+		font-weight: bold;
+		}
+	// Inner
+	> div {
+		position:absolute;
+		top:0;
+		left:0;
+		overflow:hidden;
+		padding:$top $sides 0;
+		width:$width - $sides * 2;
+		height:$height - $top;
+		}
+	}
+
+// Elements
+// -------------------------------
+.slide {
+	// Header
+	h2 {
+		margin:0 0 37px;
+		color:#666;
+		font:bold 38pt/1 Tahoma, sans-serif;
+		}
+	// Text
+	p {
+		margin:0 0 50px;
+		}
+	&.big-text {
+		p {
+			margin: 0;
+			}
+		}
+	p.note {
+		color:#999;
+		}
+	a {
+		border-bottom:0.1em solid;
+		color:$blue;
+		&:hover {
+			border-bottom: none;
+			color: lighten($blue, 15%);
+			}
+		}
+	b {
+		font-weight:bold;
+		}
+	strong {
+		color: $blue;
+		}
+	i, em {
+		font-style:italic;
+		}
+	sup {
+		vertical-align:super;
+		font-size:smaller;
+		}
+	sub {
+		vertical-align:sub;
+		font-size:smaller;
+		}
+	kbd, code, samp {
+		padding:3px 8px;
+		border-radius:8px;
+		background:$yellow;
+		color:#000;
+		@include tab-size(4);
+		line-height:1;
+		font-family:Consolas, monospace;
+		}
+	// Examples
+	iframe {
+		width: $width - 200;
+		height: $height - 200;
+		background: #FFF;
+		border: $grey 1px solid;
+		box-shadow: 0 0 30px rgba(0,0,0,0.8);
+		&+span {
+			position:absolute;
+			bottom: 30px;
+			border: 0;
+			&>a {
+				border-style: dotted;
+				}
+			}
+		}
+	// Quote
+	blockquote {
+		margin: 15px 0 0 85px;
+		width: $width - 3 * $sides - 35;
+		font-style:italic;
+		&:before {
+			position:absolute;
+			margin:-15px 0 0 -80px;
+			background: #FFF;
+			color:#CCC;
+			font:200px/1 Tahoma, sans-serif;
+			content:'\201C';
+			}
+		& + figcaption {
+			margin:-50px 0 50px;
+			font-style:italic;
+			font-weight:bold;
+			}
+		}
+	// Lists
+	ol, ul {
+		margin:0 0 50px;
+		counter-reset:list;
+		li {
+			&:before {
+				display:inline-block;
+				width:1.5em;
+				margin-right: .5em;
+				color:$blue;
+				text-align:right;
+				}
+			}
+		ol,
+		ul {
+			margin:0 0 0 2em;
+			}
+		}
+	ul > li:before {
+		content:'•';
+		}
+	ol > li:before {
+		counter-increment:list;
+		content:counter(list)'.\00A0';
+		}
+	dl {
+		line-height: 1.5;
+		dt {
+			font-weight: bold;
+			}
+		dd {
+			margin-left: 20px;
+			}
+		}
+	// Compare	
+	.compare {
+		&>div {
+			width: 45%;
+			float: left;
+			line-height: normal;
+			&+div {
+				margin-left:40px;
+				}
+			}
+		li {
+			margin-bottom: 20px;
+			}
+		}
+	// Code
+	pre { 
+		margin:0 0 49px;
+		line-height:normal;
+		counter-reset:code;
+		white-space:pre;
+		font-family:Consolas, monospace;
+		code {
+			display:block;
+			background:transparent;
+			font-size: 17pt;
+			&:before {
+				position:absolute;
+				margin:0 0 0 -100px;
+				width:100px;
+				color:#BBB;
+				text-align:right;
+				counter-increment:code;
+				content:counter(code, decimal-leading-zero)'.';
+				}
+			&:only-child:before {
+				content:'';
+				}
+			}
+		mark {
+			padding:3px 8px;
+			border-radius:8px;
+			background:#F7FCA0;
+			color:#000;
+			font-style:normal;
+			&.important {
+				background:#C00;
+				color:#FFF;
+				font-weight:normal;
+				}
+			&.comment {
+				padding:0;
+				background:none;
+				color:#999;
+				}
+			}
+		}
+	// Table
+	table {
+		margin:0 0 50px;
+		width:100%;
+		border-collapse:collapse;
+		border-spacing:0;
+		line-height:1.5;
+		td, th {
+			border: 1px solid $grey;
+			padding: 0 10px;
+			vertical-align: middle;
+			}
+		th {
+			text-align:left;
+			font-weight:bold;
+			background: lighten($blue, 30%);
+			}
+		&.striped {
+			tr:nth-child(even) {
+				background:#EEE;
+				}
+			}
+		} 
+	// Place
+	.place {
+		position:absolute;
+		top:50%;
+		left:50%;
+		@include transform(translate(-50%, -50%));
+		&.t.l, &.t.r, &.b.r, &.b.l {
+			@include transform(none);
+			}
+		&.t, &.b {
+			@include transform(translate(-50%, 0));
+			}
+		&.l, &.r {
+			@include transform(translate(0, -50%));
+			}
+		&.t, &.t.l, &.t.r {
+			top:0;
+			}
+		&.r {
+			right:0;
+			left:auto;
+			}
+		&.b, &.b.r, &.b.l {
+			top:auto;
+			bottom:0;
+			}
+		&.l {
+			left:0;
+			}
+		}
+	p+.place {
+			@include transform(translate(-50%, -25%));
+			}
+	} 
+// Screen
+@media screen {
+	// List
+	.list {
+		position:absolute;
+		clip:rect(0, auto, auto, 0); // Having fun with IE10
+		padding:80px 0 40px 100px;
+		background:#434B62 url(../images/bg.png);
+		@include retina {
+			background-image:url(../images/bg@2x.png);
+			background-size:256px;
+			}
+		// Outfit
+		.caption {
+			display:block;
+			}
+		// Slide
+		.slide {
+			float:left;
+			margin:0 (100-$width/2) (100-$height/2) 0;
+			@include transform-origin(0 0);
+			@include transform(scale(0.5));
+			@media (max-width:$break) {
+				margin:0 (80-($width/2+$width/4)) (80-($height/2+$height/4)) 0;
+				@include transform(scale(0.25));
+				}
+			// Shadow
+			&:before {
+				position:absolute;
+				top:0;
+				left:0;
+				z-index:-1;
+				width:$width/2;
+				height:$height/2;
+				box-shadow:
+					0 0 30px rgba(#000, 0.005),
+					0 20px 50px rgba($grey, 0.6);
+				border-radius:2px;
+				content:'';
+				@include transform-origin(0 0);
+				@include transform(scale(2));
+				@media (max-width:$break) {
+					width:$width/4;
+					height:$height/4;
+					@include transform(scale(4));
+					}
+				}
+			// Number
+			&:after {
+				top:auto;
+				right:auto;
+				bottom:-80px;
+				left:120px;
+				padding:0;
+				width:auto;
+				height:auto;
+				background:none;
+				color:lighten($blue, 10%);
+				text-shadow:0 1px 1px #1F3F60; 
+				font-weight:bold;
+				@include transform-origin(0 0);
+				@include transform(scale(2));
+				@media (max-width:$break) {
+					bottom:-104px;
+					@include transform(scale(4));
+					}
+				}
+			// Hover
+			&:hover:before {
+				box-shadow:
+					0 0 0 10px rgba($grey, 0.3),
+					0 20px 50px rgba($grey, 0.6);
+				}
+			// Current
+			&:target {
+				&:before {
+					box-shadow:
+						0 0 0 1px darken($blue, 10%),
+						0 0 0 10px $blue,
+						0 20px 50px rgba($grey, 0.6);
+					@media (max-width:$break) {
+						box-shadow:
+							0 0 0 1px darken($blue, 10%),
+							0 0 0 10px $blue,
+							0 20px 50px rgba($grey, 0.6);
+						}
+					}
+				&:after {
+					text-shadow:0 1px 1px rgba($grey, 0.6);
+					color:$blue;
+					}
+				}
+			// Inner
+			> div {
+				&:before {
+					position:absolute;
+					top:0;
+					right:0;
+					bottom:0;
+					left:0;
+					z-index:2;
+					content:'';
+					}
+				}
+			}
+		}
+	// Full
+	.full {
+		position:absolute;
+		top:50%;
+		left:50%;
+		overflow:hidden;
+		margin:(-$height/2) 0 0 (-$width/2);
+		width:$width;
+		height:$height;
+		background:#000;
+		// Slide
+		a.copyright {
+			display: none;
+			}
+		.slide {
+			position:absolute;
+			top:0;
+			left:0;
+			margin-left:150%;
+			// Next
+			.next {
+				visibility:hidden;
+				&.active {
+					visibility:visible;
+					}
+				}
+			// Current
+			&:target {
+				margin:0;
+				}
+			} 
+		// Progress
+		.progress {
+			position:absolute;
+			right:0;
+			bottom:0;
+			left:-10px;
+			z-index:1;
+			div {
+				padding-left:10px;
+				width:0;
+				height:10px;
+				background:url(../images/progress.svg) 100% 0 no-repeat;
+				background-clip:content-box;
+				@include transition(width 0.2s linear);
+				}
+			}
+		}
+	}
+// Print
+@page {
+	margin:0;
+	size:$width $height;
+	}
+@media print {
+	a.copyright {
+			display: none;
+			}
+	}
