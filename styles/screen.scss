@@ -41,8 +41,7 @@ a.copyright {
 	background: $blue;
 	padding: 0 10px;
 	box-shadow:0 0 20px rgba(#000, 0.4);
-	@include transform-origin(50% 100%);
-	@include transform(rotate(90deg) translateY(-79px));
+	@include transform(rotate(90deg) translateY(-57px));
 	&:hover {
 		background: lighten($blue, 5%);
 		color: lighten($blue, 45%);
@@ -155,6 +154,7 @@ a.copyright {
 		background: #FFF;
 		border: $grey 1px solid;
 		box-shadow: 0 0 30px rgba(0,0,0,0.8);
+		display: none;
 		&+span {
 			position:absolute;
 			bottom: 30px;
@@ -164,6 +164,9 @@ a.copyright {
 				}
 			}
 		}
+	.hidden {
+		display: none;
+		}
 	// Quote
 	blockquote {
 		margin: 15px 0 0 85px;
@@ -172,7 +175,6 @@ a.copyright {
 		&:before {
 			position:absolute;
 			margin:-15px 0 0 -80px;
-			background: #FFF;
 			color:#CCC;
 			font:200px/1 Tahoma, sans-serif;
 			content:'\201C';
